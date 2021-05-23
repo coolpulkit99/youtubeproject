@@ -34,11 +34,6 @@ function updateYoutubeData() {
 
     got('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=date&type=video&key=' + process.env.KEY + '&q=football')
         .then(response => {
-            // console.log(["etag"]);
-            // console.log(response.body.url);
-            // console.log(response.body.explanation);
-            // console.log(response.body.etag);
-
             let jsonResponseBody = JSON.parse(response.body);
             let items = jsonResponseBody["items"];
             items.forEach(element => {
