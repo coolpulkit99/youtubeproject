@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const got = require('got');
 const database_operations = require('./database_operations.js');
-const database = require('./database_operations.js');
 require('dotenv').config();
 
 
@@ -12,25 +11,6 @@ var timer = undefined;
 // Status endpoint
 app.get('/', (req, res) => {
     res.send('Up!')
-})
-
-//endpoint for testing functions
-app.get('/testFunction', (req, res) => {
-    // updateYoutubeData();
-    // database_operations.createVideo({
-    //     _id: "sadasdsa123dads",
-    //     publishedAt: Date.now(),
-    //     title: "item.snippet.title",
-    //     description: "item.snippet.description",
-    //     thumbnail: "item.snippet.thumbnails.default.url",
-    // }, null);
-    // res.send(database_operations.fetchVideos(1,5,null));
-    database_operations.fetchVideos(0, 5, null).then(resp => {
-        res.send({
-            videos: resp
-        });
-    })
-    // res.send('Up!')
 })
 
 //function to write video items to mongo
@@ -117,10 +97,6 @@ app.get('/getData/:page', (req, res) => {
         })
 
 })
-
-
-
-
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
